@@ -5,16 +5,17 @@ import * as dotenv from "dotenv";
 dotenv.config();
 
 export const getTokenInfosTillEnd = async (contractToCall: Contract) => {
-  let index = 0;
   const tokenAddressArray: string[] = [];
   const tokenInfoArray: TokenInfo[] = [];
-  while (true) {
-    try {
-      const tokenInfoAddress = await contractToCall.tokenInfos(index);
-      tokenAddressArray.push(tokenInfoAddress);
-      index++;
-    } catch (error) {
-      console.error(`Stop fetching at index: ${index}`);
+  for (let i = 0; ; i++) {
+    const batchAddress = await Promise.all(
+      new Array(100)
+        .fill(0)
+        .map((_, j) => contractToCall.tokenInfos(i * 100 + j).catch((_) => 0))
+    );
+    tokenAddressArray.push(...batchAddress.filter((address) => address !== 0));
+    if (batchAddress[batchAddress.length - 1] === 0) {
+      console.error(`Stop fetching at index: ${tokenAddressArray.length}`);
       break;
     }
   }

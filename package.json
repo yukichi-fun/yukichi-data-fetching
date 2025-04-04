@@ -16,5 +16,6 @@
     "dotenv": "^16.4.7",
     "ethers": "^6.13.5",
     "fs": "^0.0.1-security"
-  }
+  },
+  "packageManager": "yarn@1.22.22"
 }
