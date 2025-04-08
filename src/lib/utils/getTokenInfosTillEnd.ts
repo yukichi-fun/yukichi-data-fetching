@@ -1,6 +1,6 @@
+import * as dotenv from "dotenv";
 import { Contract } from "ethers";
 import { TokenInfo } from "../types";
-import * as dotenv from "dotenv";
 
 dotenv.config();
 

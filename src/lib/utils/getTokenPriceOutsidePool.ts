@@ -34,8 +34,8 @@ export const getTokenPriceOutsidePool = async (
 
     if (correctIndex === -1) {
       console.log(`##### cannot find the correct pool index of this token:`);
-      console.log(`##### pool agnet token address: ${agentTokenAddress}`);
-      console.log(`##### poo based token address: ${basedTokenAddress}`);
+      console.log(`##### pool agent token address: ${agentTokenAddress}`);
+      console.log(`##### pool based token address: ${basedTokenAddress}`);
       console.log(`##### pool not found`);
       return {
         token_prices_in_usd: "-",
